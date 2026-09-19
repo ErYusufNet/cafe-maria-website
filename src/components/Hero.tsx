@@ -19,32 +19,27 @@ export default function Hero() {
     <section
       id="home"
       ref={containerRef}
-      className="relative h-screen w-full overflow-hidden bg-[#2B231C]"
+      className="relative h-screen w-full overflow-hidden bg-gradient-to-b from-[#2B231C] via-[#3A2C1F] to-[#2B231C]"
     >
       <motion.div
-        className="absolute inset-0 bg-[#2B231C]"
+        className="absolute inset-0 flex items-center justify-center"
         style={{ y: imageY, scale: imageScale }}
       >
-        {/* Blurred, zoomed backdrop so the frame's edges are filled without stretching the sharp video */}
-        <video
-          className="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl opacity-60"
-          src="/images/video/yenivideo.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-        />
-        {/* Sharp foreground video shown at its native aspect ratio, so nothing is cropped or upscaled */}
-        <video
-          className="absolute inset-0 w-full h-full object-contain"
-          src="/images/video/yenivideo.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-        />
+        {/* Soft ambient glow behind the video card */}
+        <div className="absolute w-[70vmin] h-[70vmin] rounded-full bg-[#D1C8A9]/10 blur-[120px]" />
+
+        {/* Video shown as a framed card at its native aspect ratio -- no cropping, no upscaling */}
+        <div className="relative h-[92%] md:h-[88%] aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl shadow-black/60 ring-1 ring-[#FEFAE6]/15">
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            src="/images/video/yenivideo.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+          />
+        </div>
       </motion.div>
       <div className="absolute inset-0 bg-gradient-to-t from-[#2B231C]/90 via-[#2B231C]/20 to-[#2B231C]/50" />
       <div className="absolute inset-0 bg-[#2B231C]/10" />
