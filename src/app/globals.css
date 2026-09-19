@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-cream: #FEFAE6;
+  --color-rosebeige: #F5E2D1;
+  --color-lightbej: #E0D4C5;
+  --color-greenbeige: #D1C8A9;
+  --color-warmbeige: #BAB09E;
+  --color-taupe: #A49A8A;
+  --color-graybrown: #908678;
+  --color-clay: #937C65;
+  --color-brown: #796A54;
+  --color-text-dark: #2B231C;
+  --color-espresso: #2B231C;
+  --color-espresso-light: #3B2F23;
+  --color-accent: #3E4A31;
+  --color-accent-light: #55684A;
+  --color-accent-dark: #2A331F;
+
+  --font-playfair: var(--font-playfair), serif;
+  --font-cormorant: var(--font-cormorant), serif;
+  --font-inter: var(--font-inter), sans-serif;
+  --font-mono: var(--font-mono), monospace;
+}
+
+/* === BASE RESET ===
+   NOTE: Tailwind's own Preflight (bundled with `@import "tailwindcss"`)
+   already resets margin/padding/box-sizing on `*` inside its own
+   `@layer base`. A second, unlayered `* { margin: 0 }` rule here used
+   to silently beat every `mx-auto` utility across the whole site
+   (unlayered CSS always wins over layered CSS, regardless of
+   specificity) -- that's why every centered section was rendering
+   flush-left. Do not re-add a bare `*` rule; only set html/body
+   defaults below, which don't conflict with utility classes. */
+html {
+  scroll-behavior: auto;
+  background-color: #FEFAE6;
+}
+
+body {
+  background-color: #FEFAE6;
+  color: #2B231C;
+  font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: radial-gradient(rgba(43, 35, 28, 0.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5E2D1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #A49A8A;
+  border-radius: 3px;
+}
+
+/* === FILM GRAIN OVERLAY === */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* === SELECTION === */
+::selection {
+  background: #3E4A31;
+  color: #FEFAE6;
+}
+
+/* === LETTER SPACING UTILITIES === */
+.tracking-luxury {
+  letter-spacing: 0.2em;
+}
+
+.tracking-ultra {
+  letter-spacing: 0.35em;
+}
+
+/* === GLASS MORPHISM (light theme) === */
+.glass {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(43, 35, 28, 0.08);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(43, 35, 28, 0.1);
+}
+
+/* === SECTION DIVIDER === */
+.section-divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #D1C8A9, transparent);
+}
+
+/* === CTA BUTTON === */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #FEFAE6;
+  background: #3E4A31;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-cta:hover {
+  background: #2A331F;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(62, 74, 49, 0.3);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #2B231C;
+  background: transparent;
+  border: 1px solid rgba(43, 35, 28, 0.2);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-outline:hover {
+  border-color: #3E4A31;
+  color: #3E4A31;
+}
+
+/* === HIDE LENIS SCROLLBAR IF NEEDED === */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
