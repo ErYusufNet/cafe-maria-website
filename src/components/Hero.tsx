@@ -28,7 +28,7 @@ export default function Hero() {
           scale: imageScale,
           objectPosition: "center 55%",
         }}
-        src="/images/video/hero_coffee.mp4"
+        src="/images/video/yenivideo.mp4"
         autoPlay
         loop
         muted
