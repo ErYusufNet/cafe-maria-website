@@ -22,14 +22,14 @@ export default function Hero() {
       className="relative h-screen w-full overflow-hidden bg-gradient-to-b from-[#2B231C] via-[#3A2C1F] to-[#2B231C]"
     >
       <motion.div
-        className="absolute inset-0 flex items-center justify-center"
+        className="absolute inset-0 flex items-center justify-center md:justify-end px-6 md:pr-16 lg:pr-24 xl:pr-32"
         style={{ y: imageY, scale: imageScale }}
       >
         {/* Soft ambient glow behind the video card */}
         <div className="absolute w-[70vmin] h-[70vmin] rounded-full bg-[#D1C8A9]/10 blur-[120px]" />
 
         {/* Video shown as a framed card at its native aspect ratio -- no cropping, no upscaling */}
-        <div className="relative h-[92%] md:h-[88%] aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl shadow-black/60 ring-1 ring-[#FEFAE6]/15">
+        <div className="relative h-[70%] md:h-[80%] aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl shadow-black/60 ring-1 ring-[#FEFAE6]/15">
           <video
             className="absolute inset-0 w-full h-full object-cover"
             src="/images/video/yenivideo.mp4"
@@ -58,9 +58,9 @@ export default function Hero() {
 
       <motion.div
         style={{ opacity: textOpacity }}
-        className="relative z-10 h-full max-w-7xl mx-auto px-6 md:px-10 flex items-end pb-24 md:items-center md:pb-0"
+        className="relative z-10 h-full max-w-7xl mx-auto px-6 md:px-10 flex items-end justify-start pb-24 md:items-center md:pb-0"
       >
-        <div className="max-w-lg bg-[#2B231C]/40 backdrop-blur-md border border-[#FEFAE6]/15 p-8 md:p-10 rounded-2xl">
+        <div className="max-w-lg md:max-w-md bg-[#2B231C]/40 backdrop-blur-md border border-[#FEFAE6]/15 p-8 md:p-10 rounded-2xl">
           <div className="flex items-center gap-3 mb-4">
             <span className="block w-6 h-[1px] bg-[#D1C8A9]" />
             <span
