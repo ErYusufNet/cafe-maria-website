@@ -21,20 +21,31 @@ export default function Hero() {
       ref={containerRef}
       className="relative h-screen w-full overflow-hidden bg-[#2B231C]"
     >
-      <motion.video
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{
-          y: imageY,
-          scale: imageScale,
-          objectPosition: "center 55%",
-        }}
-        src="/images/video/yenivideo.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-      />
+      <motion.div
+        className="absolute inset-0 bg-[#2B231C]"
+        style={{ y: imageY, scale: imageScale }}
+      >
+        {/* Blurred, zoomed backdrop so the frame's edges are filled without stretching the sharp video */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl opacity-60"
+          src="/images/video/yenivideo.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+        />
+        {/* Sharp foreground video shown at its native aspect ratio, so nothing is cropped or upscaled */}
+        <video
+          className="absolute inset-0 w-full h-full object-contain"
+          src="/images/video/yenivideo.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+        />
+      </motion.div>
       <div className="absolute inset-0 bg-gradient-to-t from-[#2B231C]/90 via-[#2B231C]/20 to-[#2B231C]/50" />
       <div className="absolute inset-0 bg-[#2B231C]/10" />
 
