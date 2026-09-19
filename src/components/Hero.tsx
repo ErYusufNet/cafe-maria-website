@@ -21,18 +21,14 @@ export default function Hero() {
       ref={containerRef}
       className="relative h-screen w-full overflow-hidden bg-[#2B231C]"
     >
-      <motion.video
+      <motion.img
         className="absolute inset-0 w-full h-full object-cover"
         style={{
           y: imageY,
           scale: imageScale,
         }}
-        src="/images/video/yenivideo.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
+        src="/images/video/yenivideo.jpg"
+        alt="Café Maria - tuoretta kahvia"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-[#2B231C]/90 via-[#2B231C]/20 to-[#2B231C]/50" />
       <div className="absolute inset-0 bg-[#2B231C]/10" />
