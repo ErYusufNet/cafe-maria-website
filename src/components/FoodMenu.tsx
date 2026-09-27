@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { fadeUp, staggerContainer, staggerItem } from "@/lib/animations";
 import { useCart } from "@/context/CartContext";
 import { useProductModal, ProductDetail } from "@/context/ProductModalContext";
@@ -529,6 +530,27 @@ const sweetItems: ProductDetail[] = [
 function FoodCard({ item, large = false }: { item: ProductDetail; large?: boolean }) {
   const { addToCart } = useCart();
   const { openProduct } = useProductModal();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (!item.video) return;
+    const videoEl = videoRef.current;
+    if (!videoEl) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          videoEl.play().catch(() => {});
+        } else {
+          videoEl.pause();
+        }
+      },
+      { threshold: 0.35 }
+    );
+
+    observer.observe(videoEl);
+    return () => observer.disconnect();
+  }, [item.video]);
 
   return (
     <motion.div
@@ -538,14 +560,29 @@ function FoodCard({ item, large = false }: { item: ProductDetail; large?: boolea
         large ? "aspect-[4/5]" : "aspect-[5/4]"
       }`}
     >
-      <div
-        className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-110"
-        style={{
-          backgroundImage: `url(${item.image})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
+      <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-110">
+        {item.video ? (
+          <video
+            ref={videoRef}
+            className="absolute inset-0 w-full h-full object-cover"
+            src={item.video}
+            poster={item.image}
+            loop
+            muted
+            playsInline
+            preload="none"
+          />
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url(${item.image})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+        )}
+      </div>
       <div className="absolute inset-0 bg-gradient-to-t from-[#2B231C] via-[#2B231C]/25 to-[#2B231C]/5 opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
       <div className="absolute inset-0 border border-[#FEFAE6]/10 rounded-3xl pointer-events-none group-hover:border-[#D1C8A9]/40 transition-colors duration-500" />
 
