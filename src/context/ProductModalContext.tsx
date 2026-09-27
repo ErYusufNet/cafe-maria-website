@@ -8,6 +8,7 @@ export interface ProductDetail {
   subtitle: string;
   price: string;
   image: string;
+  video?: string;
   description: string;
   longDescription: string;
   tags?: string[];

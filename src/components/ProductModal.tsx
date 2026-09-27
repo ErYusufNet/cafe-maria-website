@@ -76,16 +76,30 @@ export default function ProductModal() {
               </svg>
             </button>
 
-            {/* Image */}
-            <div className="relative w-full md:w-1/2 h-64 md:h-auto shrink-0">
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `url(${activeProduct.image})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              />
+            {/* Image / Video */}
+            <div className="relative w-full md:w-1/2 h-64 md:h-auto shrink-0 bg-[#2B231C]">
+              {activeProduct.video ? (
+                <video
+                  key={activeProduct.video}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  src={activeProduct.video}
+                  poster={activeProduct.image}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
+                />
+              ) : (
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: `url(${activeProduct.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-[#2B231C]/50 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-[#2B231C]/10" />
             </div>
 

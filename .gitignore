@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw product source dump (unprocessed, kept locally only)
+/public/images/yeni-urunler/
