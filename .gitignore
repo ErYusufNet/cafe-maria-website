@@ -42,3 +42,4 @@ next-env.d.ts
 
 # raw product source dump (unprocessed, kept locally only)
 /public/images/yeni-urunler/
+/public/images/salata/

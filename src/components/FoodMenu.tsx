@@ -527,6 +527,35 @@ const sweetItems: ProductDetail[] = [
   },
 ];
 
+const saladItems: ProductDetail[] = [
+  {
+    id: 1000,
+    name: "Bataatti-granaattiomenasalaatti",
+    subtitle: "Salaatit",
+    description:
+      "Paahdettua bataattia, granaattiomenaa, pekaanipähkinää ja omenaa rapean vihreän seassa.",
+    longDescription:
+      "Uunissa paahdettu bataatti yhdistyy rapeisiin pekaanipähkinöihin, mehukkaisiin granaattiomenan siemeniin ja raikkaisiin omenaviipaleisiin tuoreen lehtisalaatin päällä. Kevyt, värikäs ja täynnä makueroja — täydellinen valinta, kun kaipaat jotain raikasta mutta täyttävää.",
+    price: "9.50 €",
+    image: "/images/menu/bataatti-granaattiomenasalaatti.jpg",
+    video: "/images/menu/bataatti-granaattiomenasalaatti.mp4",
+    tags: ["Raikas", "Kausituote"],
+  },
+  {
+    id: 1001,
+    name: "Caesarsalaatti",
+    subtitle: "Salaatit",
+    description:
+      "Rapea salaatti, paahdetut leipäkuutiot, raastettu parmesan ja sitruuna.",
+    longDescription:
+      "Klassinen caesarsalaatti tuoreesta rapeasta salaatista, itse paahdetuista leipäkuutioista, raastetusta parmesanista ja mehukkaasta sitruunasta. Yksinkertainen mutta aina toimiva valinta — täydellinen lounaaksi tai kevyeksi välipalaksi.",
+    price: "8.90 €",
+    image: "/images/menu/caesarsalaatti.jpg",
+    video: "/images/menu/caesarsalaatti.mp4",
+    tags: ["Klassikko", "Suosikki"],
+  },
+];
+
 function FoodCard({ item, large = false }: { item: ProductDetail; large?: boolean }) {
   const { addToCart } = useCart();
   const { openProduct } = useProductModal();
@@ -640,14 +669,15 @@ function FoodCard({ item, large = false }: { item: ProductDetail; large?: boolea
 
 export default function FoodMenu() {
   return (
-    <section className="relative py-20 md:py-24 bg-[#E0D4C5]">
+    <section id="menu" className="relative py-20 md:py-24 bg-[#E0D4C5]">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <motion.div
+          id="menu-savory"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={fadeUp}
-          className="mb-12"
+          className="mb-12 scroll-mt-28"
         >
           <div className="flex items-center gap-3 mb-3">
             <span className="block w-8 h-[1px] bg-[#937C65]" />
@@ -683,11 +713,12 @@ export default function FoodMenu() {
         </motion.div>
 
         <motion.div
+          id="menu-sweet"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={fadeUp}
-          className="mt-16 mb-8 flex items-center gap-4"
+          className="mt-16 mb-8 flex items-center gap-4 scroll-mt-28"
         >
           <span
             className="text-[#796A54] text-[0.65rem] uppercase shrink-0"
@@ -706,6 +737,35 @@ export default function FoodMenu() {
           className="grid grid-cols-1 sm:grid-cols-3 gap-5"
         >
           {sweetItems.map((item) => (
+            <FoodCard key={item.id} item={item} large />
+          ))}
+        </motion.div>
+
+        <motion.div
+          id="menu-salad"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeUp}
+          className="mt-16 mb-8 flex items-center gap-4 scroll-mt-28"
+        >
+          <span
+            className="text-[#796A54] text-[0.65rem] uppercase shrink-0"
+            style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.3em" }}
+          >
+            Salaatit
+          </span>
+          <span className="block h-[1px] flex-1 bg-[#2B231C]/10" />
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-5"
+        >
+          {saladItems.map((item) => (
             <FoodCard key={item.id} item={item} large />
           ))}
         </motion.div>
