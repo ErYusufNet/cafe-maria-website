@@ -41,7 +41,7 @@ export default function SpecialCoffee() {
                 Erikoiskahvimme
               </h2>
             </div>
-            <PillButton href="#menu" variant="dark">
+            <PillButton href="/menu/kahvit" variant="dark">
               Tutustu menuun
             </PillButton>
           </div>

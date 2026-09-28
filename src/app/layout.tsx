@@ -3,6 +3,8 @@ import { Playfair_Display, Cormorant_Garamond, Inter, Space_Mono } from "next/fo
 import { CartProvider } from "@/context/CartContext";
 import { ProductModalProvider } from "@/context/ProductModalContext";
 import ProductModal from "@/components/ProductModal";
+import CartDrawer from "@/components/CartDrawer";
+import ToastContainer from "@/components/ToastContainer";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -54,6 +56,8 @@ export default function RootLayout({
           <ProductModalProvider>
             {children}
             <ProductModal />
+            <CartDrawer />
+            <ToastContainer />
           </ProductModalProvider>
         </CartProvider>
       </body>

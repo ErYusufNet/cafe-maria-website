@@ -1,10 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
+import { menuCategories } from "@/data/menuCategories";
 
 const footerLinks = {
-  Menu: ["Frappuccino", "Macchiato", "Kurpitsakahvi", "Nitro Cold Brew", "Flat White"],
   Kokemus: ["Tarinamme", "Galleria", "Tapahtumat"],
   Seuraa: ["Instagram", "Twitter", "TikTok", "LinkedIn"],
   Tietoa: ["Tietosuoja", "Käyttöehdot", "Työpaikat"],
@@ -44,6 +45,32 @@ export default function Footer() {
                 Pieni, lämminhenkinen kahvila jossa jokainen kuppi on tehty
                 sydämellä.
               </p>
+            </div>
+
+            {/* Menu Column (real links) */}
+            <div>
+              <h4
+                className="text-[#3E4A31] text-[0.6rem] uppercase mb-6"
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  letterSpacing: "0.25em",
+                }}
+              >
+                Menu
+              </h4>
+              <ul className="space-y-3">
+                {menuCategories.map((cat) => (
+                  <li key={cat.slug}>
+                    <Link
+                      href={cat.href}
+                      className="text-[#2B231C]/50 hover:text-[#2B231C] text-xs transition-colors duration-300"
+                      style={{ fontFamily: "var(--font-inter)" }}
+                    >
+                      {cat.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {/* Link Columns */}

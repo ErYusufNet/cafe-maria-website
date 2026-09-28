@@ -1,19 +1,24 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/context/CartContext";
 import PillButton from "./PillButton";
 
 const navLinks = [
-  { label: "Etusivu", href: "#home" },
-  { label: "Erikoiskahvit", href: "#special" },
-  { label: "Tarina", href: "#story" },
-  { label: "Kategoriat", href: "#categories" },
-  { label: "Räätälöi", href: "#customizer" },
+  { label: "Etusivu", href: "/" },
+  { label: "Erikoiskahvit", href: "/#special" },
+  { label: "Tarina", href: "/#story" },
+  { label: "Menu", href: "/#categories" },
+  { label: "Räätälöi", href: "/#customizer" },
 ];
 
-export default function Header() {
+export default function Header({
+  variant = "transparent",
+}: {
+  variant?: "transparent" | "solid";
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { cartCount, setCartOpen } = useCart();
@@ -27,29 +32,31 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
+  const isSolid = variant === "solid" || scrolled;
+
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
+        isSolid
           ? "bg-[#FEFAE6]/90 backdrop-blur-xl border-b border-[#2B231C]/10"
           : "bg-gradient-to-b from-[#2B231C]/50 to-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between h-20">
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-2 group">
+        <Link href="/" className="flex items-center gap-2 group">
           <span
             className={`text-lg font-bold tracking-[0.15em] transition-colors duration-500 ${
-              scrolled ? "text-[#2B231C]" : "text-[#FEFAE6]"
+              isSolid ? "text-[#2B231C]" : "text-[#FEFAE6]"
             }`}
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             CAFÉ MARIA
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-10">
@@ -58,7 +65,7 @@ export default function Header() {
               key={link.label}
               href={link.href}
               className={`transition-colors duration-300 text-[0.7rem] uppercase tracking-[0.2em] opacity-80 hover:opacity-100 ${
-                scrolled ? "text-[#2B231C] hover:text-[#3E4A31]" : "text-[#FEFAE6] hover:text-[#D1C8A9]"
+                isSolid ? "text-[#2B231C] hover:text-[#3E4A31]" : "text-[#FEFAE6] hover:text-[#D1C8A9]"
               }`}
               style={{ fontFamily: "var(--font-mono)" }}
             >
@@ -70,7 +77,7 @@ export default function Header() {
         {/* CTA + Mobile Toggle */}
         <div className="flex items-center gap-4">
           <div className="hidden md:block">
-            <PillButton onClick={() => setCartOpen(true)} variant={scrolled ? "dark" : "light"}>
+            <PillButton onClick={() => setCartOpen(true)} variant={isSolid ? "dark" : "light"}>
               Kori ({cartCount})
             </PillButton>
           </div>
@@ -79,7 +86,7 @@ export default function Header() {
           <button
             onClick={() => setCartOpen(true)}
             className={`lg:hidden w-10 h-10 flex items-center justify-center relative cursor-pointer transition-colors duration-500 ${
-              scrolled ? "text-[#2B231C]" : "text-[#FEFAE6]"
+              isSolid ? "text-[#2B231C]" : "text-[#FEFAE6]"
             }`}
             aria-label="Ostoskori"
           >
@@ -98,17 +105,17 @@ export default function Header() {
           >
             <motion.span
               animate={mobileOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
-              className={`block w-6 h-[1.5px] transition-colors duration-500 ${scrolled ? "bg-[#2B231C]" : "bg-[#FEFAE6]"}`}
+              className={`block w-6 h-[1.5px] transition-colors duration-500 ${isSolid ? "bg-[#2B231C]" : "bg-[#FEFAE6]"}`}
             />
             <motion.span
               animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-              className={`block w-6 h-[1.5px] transition-colors duration-500 ${scrolled ? "bg-[#2B231C]" : "bg-[#FEFAE6]"}`}
+              className={`block w-6 h-[1.5px] transition-colors duration-500 ${isSolid ? "bg-[#2B231C]" : "bg-[#FEFAE6]"}`}
             />
             <motion.span
               animate={
                 mobileOpen ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }
               }
-              className={`block w-6 h-[1.5px] transition-colors duration-500 ${scrolled ? "bg-[#2B231C]" : "bg-[#FEFAE6]"}`}
+              className={`block w-6 h-[1.5px] transition-colors duration-500 ${isSolid ? "bg-[#2B231C]" : "bg-[#FEFAE6]"}`}
             />
           </button>
         </div>
