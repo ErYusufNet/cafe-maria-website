@@ -5,11 +5,11 @@ import { fadeUp } from "@/lib/animations";
 import PillButton from "./PillButton";
 
 const photos = [
-  "/images/coffee/gallery_latte.jpg",
-  "/images/coffee/gallery_macchiato.jpg",
-  "/images/coffee/gallery_nitro.jpg",
-  "/images/coffee/gallery_hotcup.jpg",
-  "/images/coffee/gallery_americano.jpg",
+  "/images/menu/latte.jpg",
+  "/images/menu/cappuccino.jpg",
+  "/images/menu/mokka.jpg",
+  "/images/menu/cortado.jpg",
+  "/images/menu/affogato.jpg",
 ];
 
 export default function SpecialCoffee() {
