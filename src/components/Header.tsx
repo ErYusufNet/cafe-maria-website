@@ -11,7 +11,6 @@ const navLinks = [
   { label: "Erikoiskahvit", href: "/#special" },
   { label: "Tarina", href: "/#story" },
   { label: "Menu", href: "/#categories" },
-  { label: "Räätälöi", href: "/#customizer" },
 ];
 
 export default function Header({

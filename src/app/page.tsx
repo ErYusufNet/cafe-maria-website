@@ -10,7 +10,6 @@ import OurStory from "@/components/OurStory";
 import TopCategories from "@/components/TopCategories";
 import Testimonials from "@/components/Testimonials";
 import InstagramGallery from "@/components/InstagramGallery";
-import DrinkCustomizer from "@/components/DrinkCustomizer";
 import VisitInfo from "@/components/VisitInfo";
 import Footer from "@/components/Footer";
 
@@ -36,7 +35,6 @@ export default function Home() {
           <TopCategories />
           <Testimonials />
           <InstagramGallery />
-          <DrinkCustomizer />
           <VisitInfo />
           <Footer />
         </main>
